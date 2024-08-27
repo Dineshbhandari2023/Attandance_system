@@ -1,8 +1,15 @@
 import React from "react";
-import signup from "../../../assets/sign.png";
+import signup from "../../../public/assets/sign.png";
 import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/admin_dashboard");
+  };
+
   return (
     <div className="bg-white flex justify-between">
       <div className="ml-32 mr-22 flex flex-col w-2/5 justify-center text-center">
@@ -31,6 +38,7 @@ const Signup = () => {
           <button
             type="submit"
             className="w-full bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600"
+            onClick={handleClick}
           >
             Sign Up
           </button>
@@ -43,7 +51,7 @@ const Signup = () => {
         <button className="flex justify-center">
           <GoogleLogin
             onSuccess={(credentialResponse) => {
-              console.log(credentialResponse);
+              navigate("/admin_dashboard");
             }}
             onError={() => {
               console.log("Login Failed");
